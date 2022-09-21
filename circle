@@ -5,7 +5,7 @@ void display_circle()
 glClearColor(1.0f, 1.0f, 1.0f, 1.0f);    // 배경
 glClear(GL_COLOR_BUFFER_BIT);  
 glColor3f(0.0f, 0.0f, 1.0f);     
-double rad = 0.5;  //반지름  
+double rad = 0.5;    //반지름  
 glBegin(GL_LINE_STRIP);     
 for (int i = 0; i < 360; i++) 
 {       
