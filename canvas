@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <style media="screen">
+canvas.hover{background-color: red}
+    </style>
+    <meta charset="utf-8">
+    <title>캔버스</title>
+  </head>
+  <body onload="drawRect();">
+<canvas id="canvas" width="300" height="300"></canvas>
+<script>
+  function drawRect() {
+     var canvas = document.getElementById("canvas");
+     var context = canvas.getContext("2d");
+     context.fillRect(100,100,100,100);
+ 
+  }
+</script>
+  </body>
+</html>
