@@ -210,7 +210,6 @@
 
 -------------js-----------------
 
-// div 게임 판 배열
 var cellArr = document.getElementsByClassName("cell");
 // 숫자 배열
 var numArr = Array(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0);
@@ -227,15 +226,26 @@ function moveNum(obj){
 
 // 게임 초기화
 function init(){
+    var rand = parseInt(Math.random()*3);
     for(var i=0; i<16; i++){
     	cellArr[i].innerHTML="";
     	numArr[i] = 0;
     }
     var score = document.getElementById("score");
     score.innerHTML=0;
-    
-  	randomNum();
-  	randomNum();
+    if(rand==0)
+    {  	
+    randomNum();
+    randomNum1();
+    }
+    if(rand==1)
+    {
+        randomNum();
+    }
+    if(rand==2)
+    {
+        randomNum1();
+    }
 }
 
 // 게임 시작
@@ -248,17 +258,17 @@ function start(){
 function end() {
 	var score = document.getElementById("score").innerHTML;
 	var bestScore = document.getElementById("bestScore").innerHTML;
-	
+
 	alert("score : "+ score);
-	
+
 	if(parseInt(bestScore) < parseInt(score)){
 		localStorage.removeItem("2048_best_score");
 		localStorage.setItem("2048_best_score", score);
 		document.getElementById("bestScore").innerHTML = score;		
 	}
-	
-	
-	
+
+
+
 	document.getElementById("intro").style.display = 'block';
 	document.getElementById("gamearea").style.display = 'none';
 	document.getElementById("score").innerHTML = "0";
@@ -276,13 +286,25 @@ function randomNum(){
     setNum();
 }
 
+function randomNum1(){
+    var done=false;
+    while(done==false){
+        var num = Math.floor(Math.random()*16);
+        if(numArr[num] == 0){
+        	numArr[num] = getNewNum1();
+            done=true;
+        }
+    }
+    setNum();
+}
 
 // 숫자 생성 (2,4)
-function getNewNum(){
-    var rand = parseInt(Math.random()*10);
-    if(rand==0) return 4;
+function getNewNum(){   
     return 2;
-    
+}
+
+function getNewNum1(){   
+    return 4;
 }
 
 // div에 숫자 반영
@@ -383,11 +405,11 @@ function right(){
                 }
             }
         }
-        
+
     }
 
     setNum();
-    
+
     if(isMoved){
     	randomNum();
     } else {
@@ -426,7 +448,7 @@ function left(){
                 }
             }
         }
-        
+
     }
 
     setNum();
@@ -468,7 +490,7 @@ function down(){
     }
 
     setNum();
-    
+
     if(isMoved){
     	randomNum();
     } else {
@@ -510,7 +532,7 @@ function up(){
     }
 
     setNum();
-    
+
     if(isMoved){
     	randomNum();
     } else {
@@ -604,7 +626,7 @@ function check(){
                 };
                 break;
         }
-        
+
         if(numArr[i] == 0){
         	x=true; 
             break;
